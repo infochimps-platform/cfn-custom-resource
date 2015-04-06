@@ -5,8 +5,8 @@ class TestResourceHandler < CloudFormation::CustomResource::BaseHandler
 end
 
 describe CloudFormation::CustomResource::Router do
-  before :each do
-    @request = {
+  let(:request)do
+    {
       'RequestType' => 'Create',
       'TopicArn' => 'arn:aws:sns:us-west-2:841111111111:topic2',
       'ResponseURL' => 'https://cloudformation-custom-resource-response-bogus',
@@ -19,36 +19,37 @@ describe CloudFormation::CustomResource::Router do
         'aaa' => 'bbb'
       }
     }
-    @config = { :test => "test" }
-    @router = CloudFormation::CustomResource::Router.default_router
-    @router.config = @config
+  end
+  let(:config){ { test: 'test' } }
+
+  subject do
+    router = CloudFormation::CustomResource::Router.default_router
+    router.config = config
+    router
   end
 
-  describe "#singleton" do
-    it "creates a router" do
-      expect(@router).to be_an_instance_of CloudFormation::CustomResource::Router
+  context '#singleton' do
+    it 'creates a router' do
+      expect(subject).to be_an_instance_of CloudFormation::CustomResource::Router
     end
   end
 
-  describe "#get_handler" do
-    it "returns a default hander for unknown message types" do
-      expect( @router.get_handler( @request ) ).to be_an_instance_of CloudFormation::CustomResource::UnknownResourceHandler
+  context '#get_handler' do
+    it 'returns a default hander for unknown message types' do
+      expect(subject.get_handler request).to be_an_instance_of CloudFormation::CustomResource::UnknownResourceHandler
     end
 
-
-    it "returns handlers for registered types" do
-      @request['ResourceType'] = "Custom::TestType"
-      expect( @router.get_handler( @request ) ).to be_an_instance_of TestResourceHandler
-
-      @request['ResourceType'] = "Custom::Test-Type"
-      expect( @router.get_handler( @request ) ).to be_an_instance_of TestResourceHandler
+    it 'returns handlers for registered types' do
+      request['ResourceType'] = 'Custom::TestType'
+      expect(subject.get_handler request).to be_an_instance_of TestResourceHandler
+      request['ResourceType'] = 'Custom::Test-Type'
+      expect(subject.get_handler request).to be_an_instance_of TestResourceHandler
     end
 
-    it "passes its config on to the handlers it builds" do
-      @request['ResourceType'] = "Custom::TestType"
-      handler = @router.get_handler( @request )
-
-      expect( handler.config[:test] ).to eql("test")
+    it 'passes its config on to the handlers it builds' do
+      request['ResourceType'] = 'Custom::TestType'
+      handler = subject.get_handler request
+      expect(handler.config[:test]).to eql('test')
     end
   end
 end

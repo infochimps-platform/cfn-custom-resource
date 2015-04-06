@@ -12,9 +12,9 @@ Gem::Specification.new do |spec|
   spec.description   = %q{This gem provides much of what you will need to handle requests for custom resources for AWS Cloudformation.}
   spec.license       = 'UNKNOWN'
 
-  spec.files         = `git ls-files -z`.split('\x0')
+  spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}){ |f| File.basename f }
-  spec.test_files    = spec.files.grep %r{^(test|spec|features)/}
+  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
   spec.add_development_dependency('bundler', '>= 1.6.5')

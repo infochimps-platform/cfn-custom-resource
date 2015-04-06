@@ -1,0 +1,15 @@
+---
+LineLength:
+  Max: 120
+Style/Documentation:
+  Enabled: false
+Style/Encoding:
+  EnforcedStyle: when_needed
+Style/SpecialGlobalVars:
+  Enabled: false
+Style/SingleLineMethods:
+  Enabled: false
+Style/SpaceBeforeBlockBraces:
+  EnforcedStyle: no_space
+Style/SpaceBeforeSemicolon:
+  Enabled: False

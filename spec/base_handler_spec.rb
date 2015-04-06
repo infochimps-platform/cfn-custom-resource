@@ -19,7 +19,7 @@ describe CloudFormation::CustomResource::BaseHandler do
 
   subject{ CloudFormation::CustomResource::BaseHandler.new request }
 
-  describe '#new' do
+  context '#new' do
     it 'takes a request as a parameter' do
       expect(subject).to be_an_instance_of CloudFormation::CustomResource::BaseHandler
     end
@@ -37,7 +37,7 @@ describe CloudFormation::CustomResource::BaseHandler do
     end
   end
 
-  describe '#validate!' do
+  context '#validate!' do
     it 'takes a hash as an argument and returns a boolean' do
       expect(subject.validate!({})).to eql(true)
       expect(subject.validate!('bad' => 'parameter')).to eql(false)
@@ -54,7 +54,7 @@ describe CloudFormation::CustomResource::BaseHandler do
     end
   end
 
-  describe '#to_hash' do
+  context '#to_hash' do
     it 'generates success messages' do
       subject.status = 'SUCCESS'
       subject.physicalId = 'pid'
@@ -72,7 +72,7 @@ describe CloudFormation::CustomResource::BaseHandler do
     end
   end
 
-  describe '#fail!' do
+  context '#fail!' do
     it 'returns false' do
       expect(subject.fail! 'message').to eql(false)
     end
@@ -105,19 +105,19 @@ describe DerivedResource do
 
   subject{ DerivedResource.new request }
 
-  describe '#mandatory_parameters' do
+  context '#mandatory_parameters' do
     it 'gets set up by the class definition' do
       expect(subject._mparams).to eq(%w(a b c))
     end
   end
 
-  describe '#optional_parameters' do
+  context '#optional_parameters' do
     it 'gets set up by the class definition' do
       expect(subject._oparams).to eq(%w(x y z))
     end
   end
 
-  describe '#validate!' do
+  context '#validate!' do
     it 'requires mandatory parameters' do
       expect(subject.validate!('a' => 1, 'b' => 1, 'c' => 3)).to eql(true)
       expect(subject.validate!('b' => 1, 'c' => '')).to eql(false)
@@ -153,7 +153,7 @@ describe CloudFormation::CustomResource::BaseHandler do
 
   subject{ CloudFormation::CustomResource::BaseHandler.new request }
 
-  describe '#new' do
+  context '#new' do
     it 'sets up accessors for important request parameters' do
       expect(subject.request).to eq(request)
       expect(subject.requestId).to eq(request['RequestId'])

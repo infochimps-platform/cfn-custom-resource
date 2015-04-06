@@ -1,7 +1,4 @@
-require 'cloud-formation/custom-resource/router'
-require 'cloud-formation/custom-resource/base-handler'
-require 'cloud-formation/custom-resource/unknown'
-
+require 'spec_helper'
 
 class TestResourceHandler < CloudFormation::CustomResource::BaseHandler
   resource_types 'Custom::TestType', 'Custom::Test-Type'

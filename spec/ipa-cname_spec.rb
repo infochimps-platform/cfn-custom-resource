@@ -1,6 +1,4 @@
-require 'cloud-formation/custom-resource/router'
-require 'cloud-formation/custom-resource/ipa/cname'
-
+require 'spec_helper'
 
 describe CloudFormation::CustomResource::Router do
   before :each do

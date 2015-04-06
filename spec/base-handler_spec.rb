@@ -1,5 +1,4 @@
-require 'cloud-formation/custom-resource/base-handler'
-
+require 'spec_helper'
 
 describe CloudFormation::CustomResource::BaseHandler do
   before :each do

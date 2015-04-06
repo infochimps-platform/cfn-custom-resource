@@ -38,6 +38,9 @@ module CloudFormation
 
             ENV['KRB5CCNAME'] = "/tmp/krb-#{requestId}"
             system("kinit -kt #{keytab} #{principal}")
+            unless $?.to_i == 0
+              return fail! "IPA CNAME Handler error: unable to obtain kerberos credentials. keytab: #{keytab}, principal: #{principal}"
+            end
 
             return yield
           rescue Exception => m
@@ -57,8 +60,7 @@ module CloudFormation
           # Returns true if the zone already has an entry for recordname
           zone, record, hostname = ['Zone', 'RecordName'].map { |x| properties[x] }
           ENV['KRB5CCNAME'] = "/tmp/krb-#{requestId}"
-          ipa dnsrecord-find #{zone} #{record}`
-
+          `ipa dnsrecord-find #{zone} #{record}`
           return $?.to_i == 0
         end
 

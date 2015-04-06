@@ -124,19 +124,21 @@ module CloudFormation
           'LogicalResourceId'  => logicalId,
           'StackId'            => stackId,
           'RequestId'          => requestId,
-          'Data'               => data
+          'Data'               => data,
         }.reject {|k,v| v.nil?}
+
       end
-    end
 
-    def send_request!
-      response = self.to_hash.to_json
 
-      uri = URI.parse(request['ResponseURL'])
-      Net::HTTP.start(uri.host) do |http|
-        resp = http.send_request('PUT', uri.request_uri, response.to_json, {'content-type'=>''})
+      def send_request!
+        response = self.to_hash.to_json
+
+        uri = URI.parse(request['ResponseURL'])
+        Net::HTTP.start(uri.host) do |http|
+          resp = http.send_request('PUT', uri.request_uri, response, {'content-type'=>''})
+        end
       end
-    end
 
+    end
   end
 end

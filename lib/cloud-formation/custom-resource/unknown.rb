@@ -4,16 +4,16 @@ module CloudFormation
 
       is_default_handler
 
-      def create
+      def create(properties)
         self.physicalId = "unknown-#{self.requestId}"
         fail! "Unknown Resource Type: #{request['ResourceType']}"
       end
 
-      def update
+      def update(properties)
         fail! "Unknown Resource Type: #{request['ResourceType']}"
       end
 
-      def delete
+      def delete(properties)
         true
       end
 

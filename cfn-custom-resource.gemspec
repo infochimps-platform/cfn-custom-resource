@@ -1,7 +1,7 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'cloud-formation/custom-resource/version'
+require 'cloud_formation/custom_resource/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'cfn-custom-resource'

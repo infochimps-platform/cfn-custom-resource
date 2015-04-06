@@ -1,5 +1,3 @@
-require 'cloud-formation/custom-resource/base-handler'
-
 module CloudFormation
   module CustomResource
     module IPA

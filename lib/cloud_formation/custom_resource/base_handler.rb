@@ -1,7 +1,3 @@
-require 'json'
-require 'net/http'
-require 'cloud-formation/custom-resource/router'
-
 module CloudFormation
   module CustomResource
     class BaseHandler

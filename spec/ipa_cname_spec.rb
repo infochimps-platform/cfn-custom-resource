@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe CloudFormation::CustomResource::Router do
-  before :each do
-    @request = {
+  let(:request) do
+    {
       'RequestType' => 'Create',
       'TopicArn' => 'arn:aws:sns:us-west-2:841111111111:topic2',
       'ResponseURL' => 'https://cloudformation-custom-resource-response-bogus',
@@ -15,12 +15,13 @@ describe CloudFormation::CustomResource::Router do
         'aaa' => 'bbb'
       }
     }
-    @router = CloudFormation::CustomResource::Router.default_router
   end
 
-  describe "#get_handler" do
-    it "the default router is wired up to process requests for Custom::IPA-CNAME" do
-      expect( @router.get_handler( @request ) ).to be_an_instance_of CloudFormation::CustomResource::IPA::CNAME
+  subject{ CloudFormation::CustomResource::Router.default_router }
+
+  context '#get_handle' do
+    it 'the default router is wired up to process requests for Custom::IPA-CNAME' do
+      expect(subject.get_handler request).to be_an_instance_of CloudFormation::CustomResource::IPA::CNAME
     end
   end
 end

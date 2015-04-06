@@ -1,4 +1,4 @@
-require 'cloud-formation/custom-resource/router'
-require 'cloud-formation/custom-resource/base-handler'
-require 'cloud-formation/custom-resource/unknown'
-require 'cloud-formation/custom-resource/ipa/cname'
+require 'cloud_formation/custom_resource/router'
+require 'cloud_formation/custom_resource/base_handler'
+require 'cloud_formation/custom_resource/unknown'
+require 'cloud_formation/custom_resource/ipa/cname'

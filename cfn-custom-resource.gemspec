@@ -8,8 +8,10 @@ Gem::Specification.new do |spec|
   spec.version       = CloudFormation::CustomResource::VERSION
   spec.authors       = ['Chris Howe', 'Travis Dempsey']
   spec.email         = ['howech@infochimps.com', 'travis@infochimps.com']
-  spec.summary       = %q{Cloudformation custom resource handler}
-  spec.description   = %q{This gem provides much of what you will need to handle requests for custom resources for AWS Cloudformation.}
+  spec.summary       = 'Cloudformation custom resource handler'
+  spec.description   = <<-DESC.gsub(/^ {4}/, '')
+    This gem provides much of what you will need to handle requests for AWS Cloudformation Custom Resources
+  DESC
   spec.license       = 'UNKNOWN'
 
   spec.files         = `git ls-files`.split($/)

@@ -5,7 +5,7 @@ require 'cfn-custom-resource'
 
 CloudFormation::CustomResource::Router.default_router.config = {
   'cname-keytab'    => '/etc/www/sns.keytab',
-  'cname-principal' => 'cfn-dns-resource'
+  'cname-principal' => 'cfn-custom-resource-ipa-handler'
 }
 
 class IPAResourceHandler
